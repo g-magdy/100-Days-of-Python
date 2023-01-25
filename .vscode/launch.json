@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/George Magdy/OneDrive - Cairo University - Students/Documents/GitHub/100_Days_of_Python",
-      "program": "c:/Users/George Magdy/OneDrive - Cairo University - Students/Documents/GitHub/100_Days_of_Python/build/Debug/outDebug",
+      "cwd": "d:/Python development/100Days/W1/Week1",
+      "program": "d:/Python development/100Days/W1/Week1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
