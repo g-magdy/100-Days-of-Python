@@ -5,7 +5,7 @@ A place where I can make mistakes and learn a lot about GitHub and about Python 
 <aside>
 💡 Please note that most of the code here was written when I was practicing and learning the course :
 
-[](https://www.udemy.com/course/100-days-of-code/)
+https://www.udemy.com/course/100-days-of-code/
 
 </aside>
 
