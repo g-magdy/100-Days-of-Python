@@ -9,6 +9,6 @@ https://www.udemy.com/course/100-days-of-code/
 
 </aside>
 
-# What can I find here
+# What can I find here ?
 
 - Small functional programs that I learn through
