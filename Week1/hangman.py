@@ -1,17 +1,22 @@
 import os
 import random
 import hangman_art
-os.system('CLS')
-print("Welcome to Hangman")
-print(hangman_art.hangmanArt)
-# those are the sample space from which the random word is chosen
-#vocab = ["apple", "mango", "orange", "banana", "eggs", "beans", "aswan", "luxor", "oliver"]
+
 from hangman_words import word_list
 word = random.choice(word_list)
 guesslist = []
 for i in range(len(word)):
     guesslist.append('_')
 print(guesslist)
+
+def intro():
+    os.system('CLS')
+    print("Welcome to Hangman")
+    print(hangman_art.hangmanArt)
+intro()
+
+# those are the sample space from which the random word is chosen
+#vocab = ["apple", "mango", "orange", "banana", "eggs", "beans", "aswan", "luxor", "oliver"]
 #print(word)
 lives = 7
 while lives > 0:
@@ -19,7 +24,7 @@ while lives > 0:
     os.system('CLS') # really beautiful
     if l in guesslist:
         print("you guessed this correctly before")
-        continue
+        continue    
     right_choice = False
     for i in range(len(word)):
         if l == word[i].lower():
