@@ -1,1 +1,0 @@
-    print(f"Welcome to the ride, Your bill is {bill}")
