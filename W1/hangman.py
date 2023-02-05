@@ -7,17 +7,15 @@ word = random.choice(word_list)
 guesslist = []
 for i in range(len(word)):
     guesslist.append('_')
-print(guesslist)
 
 def intro():
     os.system('CLS')
     print("Welcome to Hangman")
     print(hangman_art.hangmanArt)
+    print(guesslist)
+
 intro()
 
-# those are the sample space from which the random word is chosen
-#vocab = ["apple", "mango", "orange", "banana", "eggs", "beans", "aswan", "luxor", "oliver"]
-#print(word)
 lives = 7
 while lives > 0:
     l = input("Choose a letter\n").lower()
