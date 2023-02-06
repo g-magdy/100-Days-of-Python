@@ -18,13 +18,16 @@ germany_capitals = {
     "Stutt"
 }
 
-travel_log = {
-    "France" : { # nested dictionary
-        "cities_visited" : ["berlin", "hamburg", "bayern"], # the value is a list
-        "numberOFvisits" : 12,
-        },
-    "Germany" : { # nested dictionay
-        "Capitals" : germany_capitals, # the value is a list
-        },
+PrepareBag = {
+    "tech" : ['phone', 'charger', 'laptop'],
+    'Shower' : ['shampoo', 'soap'],
+    'food' : ['protein', 'chocolate', 'snacks'],
+    'extras' : {
+        'games' : "rubick's cube",
+        'notebooks' : ['journal', 'book'],
+    }
 }
-print(travel_log)
+
+travel_log = [
+    
+]
