@@ -5,12 +5,6 @@ from Art_of_w2 import BlackJack_logo
 # if you exceed 21 -> you lose (called a bust)
 # ace == 11, normal 10, king, queen, jack
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-def sum(arr):
-    #returns the sum of the elements in the given list
-    sum = 0
-    for element in arr:
-        sum += element
-    return sum
 
 def showDecks(me, dealer):
     print("\n***********************************************")
@@ -60,8 +54,11 @@ def PlayGame():
     os.system("cls")
     print(BlackJack_logo)
     print("Welcome to black jack")
-    mycards = [random.choice(cards), random.choice(cards)]
-    dealerCards = [random.choice(cards), random.choice(cards)]
+    mycards = []
+    dealerCards = []
+    for _ in range(2):
+        deal_card_for(mycards)
+        deal_card_for(dealerCards)
     print(f"Your cards are : {mycards}, current score = {sum(mycards)}")
     print(f"Computer's first card is {dealerCards[0]}")
     decision = input("Type 'y' to get another card or 'n' to pass : ")

@@ -12,3 +12,8 @@ def hit():
 def stand():
     print("stand")
 '''
+
+deck = [11, 3]
+
+deck[deck.index(11)] = 1
+print(deck) 
