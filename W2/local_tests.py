@@ -15,7 +15,7 @@ def f():
     a = 20
     print(a)
 
-f()
+#f()
 
 # In python there is no block  scope : no scope for if or while or for 
 # the scope of the stuff inside s the same scope of the enclosing function definition or global
@@ -28,4 +28,37 @@ elif a > 15:
 else:
     b = 1
     
-print(b)
+# print(b)
+
+data = [
+    {
+        'name' : 'george',
+        'follower_count' : 123,
+        'description' : 'Student',
+        'country' : 'Egypt'
+    },
+    {
+        'name' : 'messi',
+        'follower_count' : 993,
+        'description' : 'player',
+        'country' : 'argentina'
+    },
+    {
+        'name' : 'abdeen',
+        'follower_count' : 100,
+        'description' : 'prof',
+        'country' : 'Egypt'
+    },
+]
+CompDict = {
+    'name' : 'apple',
+    'follower_count' : 9999,
+    'description' : 'tech',
+    'country' : 'US'
+}
+
+print(CompDict['country'])
+
+score = 10
+def f():
+    score += 1
