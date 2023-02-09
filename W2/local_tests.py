@@ -59,6 +59,6 @@ CompDict = {
 
 print(CompDict['country'])
 
-score = 10
-def f():
-    score += 1
+
+if CompDict:
+    print("This is true!!!")

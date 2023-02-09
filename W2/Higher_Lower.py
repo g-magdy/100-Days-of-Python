@@ -9,16 +9,12 @@ while B["name"] == A["name"]:
     B = random.choice(data)
 ##################
 def judge(answer):
-    if answer.lower() == 'a':
-        if A["follower_count"] > B["follower_count"]:
-            return True
-        else:
-            return False
-    elif answer.lower() == 'b':
-        if B["follower_count"] > A["follower_count"]:
-            return True
-        else:
-            return False
+    '''takes the answer and returns its validity (true or false) by comparing the followers of the two global objects and the answer'''
+    if A["follower_count"] > B["follower_count"]:
+        return answer.lower() == 'a'
+    elif B["follower_count"] > A["follower_count"]:
+        return answer.lower() == 'b'
+    return False # if the answer is neither a nor b
 ####################
 final_score = 0
 while True:
