@@ -1,5 +1,5 @@
 from turtle import Turtle
-STARTING_CELLS = 6
+STARTING_CELLS = 12
 STEP_SIZE = 20
 UP = 90
 DOWN = 270
@@ -9,8 +9,17 @@ RIGHT = 0
 class Snake:
     def __init__(self):
         self.snake_segments = []
+        self.numSegments = 0
         self.create()
         self.snake_head = self.snake_segments[0]
+        
+    def grow(self):
+            t = Turtle(shape="square")
+            t.color("white")
+            t.penup()
+            t.goto(self.snake_segments[self.numSegments - 1].position())
+            self.snake_segments.append(t)
+            self.numSegments += 1
 
     def create(self):
         for i in range (STARTING_CELLS):
@@ -19,6 +28,7 @@ class Snake:
             t.penup()
             t.setx(-20*i)
             self.snake_segments.append(t)
+            self.numSegments += 1
         
     # the best part is how to make the body follow the head
     # that is the wrong way to think about it

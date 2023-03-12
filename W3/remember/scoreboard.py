@@ -20,3 +20,8 @@ class Scoreboard(Turtle):
         self.color(COLOR) # IF YOU WANT TO CHANGE THE FONT COLOR
         self.write(f"Score = {self.score}", align= ALIGNMENT, font=(NAME, SIZE, TYPE))
         
+    def gameOver(self):
+        self.goto(0,0)
+        self.clear()
+        self.write(f"Game Over\nyour final score is = {self.score}", align= ALIGNMENT, font=(NAME, SIZE, TYPE))
+                
