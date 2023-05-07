@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
@@ -13,14 +13,14 @@ serpent = Snake()
 myFood = Food()
 judge = Scoreboard()
 
-def close():
+def exitLoop():
     global game_is_on
     game_is_on = False
 
 game_is_on = True
 
 myScr.listen()
-myScr.onkey(fun=close, key="s") #do not put parentheses after the function name
+myScr.onkey(fun=exitLoop, key="e") #do not put parentheses after the function name
 myScr.onkey(fun=serpent.goUp, key="Up")
 myScr.onkey(fun=serpent.goDown, key="Down")
 myScr.onkey(fun= serpent.goLeft, key="Left")
@@ -33,10 +33,12 @@ while game_is_on:
     if serpent.eatFood(myFood):
         serpent.grow()
         judge.incrementScore()
+    game_is_on = not serpent.collision()
     time.sleep(0.03)
 
+#myScr.bye()
 # this line is better than the exit on click,
 # because it does not print strange error messages on the terminal
 # when closing the window 
-# TODO: I can initiate a sequence to exit the game properly with a message
-myScr.bye()
+judge.gameOver()
+myScr.exitonclick()

@@ -21,8 +21,6 @@ class Snake:
         '''
         the idea is simple, advance the head by a step.
         then make each cell follow the one in front of it
-        for cell in self.cells:
-            cell.fd(STEP_SIZE)
         '''
         self.head.forward(STEP_SIZE) # don't forget to advance the head
         # don't forget to start from len() - 1
@@ -58,5 +56,18 @@ class Snake:
         t = Turtle(shape="square")
         t.color("white")
         t.penup()
-        t.goto(self.cells[len(self.cells)-1].position())
+        t.goto(self.cells[-1].position())
         self.cells.append(t)
+        
+    def collision(self):
+        # first detect collision with wall
+        outX = self.head.xcor() < -295 or self.head.xcor() > 295
+        outY = self.head.ycor() < -295 or self.head.ycor() > 295
+        if (outX or outY):
+            return True
+        # second : detect collision with my body
+        for segment in self.cells[2:]:
+            if (self.head.distance(segment) < 5):
+                return True
+        
+        return False
