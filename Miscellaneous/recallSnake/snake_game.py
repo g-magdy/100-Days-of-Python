@@ -1,5 +1,7 @@
 from turtle import Turtle, Screen
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
 import time
 
 myScr = Screen()
@@ -8,6 +10,8 @@ myScr.bgcolor("black")
 myScr.title("Snake Game! you can exit by pressing s")
 myScr.tracer(0)
 serpent = Snake()
+myFood = Food()
+judge = Scoreboard()
 
 def close():
     global game_is_on
@@ -23,8 +27,12 @@ myScr.onkey(fun= serpent.goLeft, key="Left")
 myScr.onkey(fun=serpent.goRight, key="Right")
 
 while game_is_on:
+    judge.showScore()
     myScr.update()
     serpent.move()
+    if serpent.eatFood(myFood):
+        serpent.grow()
+        judge.incrementScore()
     time.sleep(0.03)
 
 # this line is better than the exit on click,

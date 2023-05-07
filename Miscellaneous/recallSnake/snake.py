@@ -46,3 +46,17 @@ class Snake:
     def goDown(self):
         if (self.head.heading() != 90):
             self.head.setheading(270)
+            
+    def eatFood(self, food):
+        if (self.head.distance(food) < 15):
+            food.newPos()
+            return True
+        else:
+            return False
+            
+    def grow(self):
+        t = Turtle(shape="square")
+        t.color("white")
+        t.penup()
+        t.goto(self.cells[len(self.cells)-1].position())
+        self.cells.append(t)
