@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Git-hub/100_Days_of_Python/W3",
-      "program": "d:/Git-hub/100_Days_of_Python/W3/build/Debug/outDebug",
+      "cwd": "d:/Git-hub/100_Days_of_Python",
+      "program": "d:/Git-hub/100_Days_of_Python/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

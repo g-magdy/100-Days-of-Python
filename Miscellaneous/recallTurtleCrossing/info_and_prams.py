@@ -1,0 +1,10 @@
+colors = ["red", "orange", "yellow", "green", "cyan", "purple"]
+SCREEN_SIDE = 800
+PLAYER_STEP_SIZE = 10
+CARS_STEP_SIZE = 10 # i may make it random
+NUM_CARS = 10
+FONT = ("Courier", 24, "normal")
+BG_COLOR = "#191919"
+SCORE_COLOR = "white"
+STARTING_POS = (0, - SCREEN_SIDE//2 + 20)
+SCREEN_SLEEP = 0.1
