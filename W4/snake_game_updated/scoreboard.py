@@ -9,10 +9,13 @@ class Scoreboard(Turtle):
         self.setpos(0, 260)
         self.score = 0
         self.highScore = 0
+        with open("highScore.txt") as file:
+            self.highScore = int(file.read()) 
+            # don't forget to convert from str to int
         
     def showScore(self):
         self.clear()
-        self.write(arg=f"Score: {self.score} HighScore: {self.highScore}", align="center", font=("Courier", 20, "normal"))
+        self.write(arg=f"Score: {self.score}, HighScore: {self.highScore}", align="center", font=("Courier", 20, "normal"))
         
     def incrementScore(self):
         self.score += 1
@@ -20,6 +23,9 @@ class Scoreboard(Turtle):
     def resetScore(self):
         if (self.score > self.highScore):
             self.highScore = self.score
+        with open("highScore.txt", mode="w") as file:
+            file.write(str(self.highScore))
+            # don't forget to convert from int to stringd
         self.score = 0
         self.showScore()
         
