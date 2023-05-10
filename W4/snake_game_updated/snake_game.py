@@ -33,12 +33,10 @@ while game_is_on:
     if serpent.eatFood(myFood):
         serpent.grow()
         judge.incrementScore()
-    game_is_on = not serpent.collision()
+    if serpent.collision():
+        judge.resetScore()
+        serpent.resetSnake()
     time.sleep(0.03)
 
-#myScr.bye()
-# this line is better than the exit on click,
-# because it does not print strange error messages on the terminal
-# when closing the window 
-judge.gameOver()
+# judge.gameOver()
 myScr.exitonclick()

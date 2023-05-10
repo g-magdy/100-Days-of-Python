@@ -29,6 +29,16 @@ class Snake:
             pos = self.cells[i-1].position() # don't forget the brackets here!!
             self.cells[i].goto(pos)
     
+    def resetSnake(self):
+        #(But does not remove them from the screen do i'll)
+        for c in self.cells:
+            c.goto(1000, 1000)
+        
+        self.cells.clear() # delete old snake 
+            
+        self.createSnake()
+        self.head = self.cells[0]
+    
     def goRight(self):
         if (self.head.heading() != 180):
             self.head.setheading(0)
