@@ -36,7 +36,7 @@ while (game_is_on):
         break
     if (tut.passedFinishLine()):
         judge.levelUp()
-        rate /= 1.3
+        rate /= 1.4
         tut.resetPos()
 
 playground.exitonclick()

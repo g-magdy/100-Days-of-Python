@@ -7,4 +7,4 @@ FONT = ("Courier", 24, "normal")
 BG_COLOR = "#191919"
 SCORE_COLOR = "white"
 STARTING_POS = (0, - SCREEN_SIDE//2 + 20)
-SCREEN_SLEEP = 0.1
+SCREEN_SLEEP = 0.07
