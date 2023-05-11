@@ -3,5 +3,8 @@ content = file.read()
 print(content)
 file.close() # to free up the resources'''
 # better way :
-with open("newFile.txt", mode="w") as file:
-    file.write("this was created using Python")
+# with open("../../../../Users/George Magdy/OneDrive - Cairo University - Students/Desktop/temp.txt") as file:
+with open("../../../../temp.txt") as file:
+    a = file.read()
+    print(a)
+print("emojis don'e woork in files 😢")
