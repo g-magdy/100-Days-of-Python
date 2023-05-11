@@ -7,4 +7,4 @@ file.close() # to free up the resources'''
 with open("../../../../temp.txt") as file:
     a = file.read()
     print(a)
-print("emojis don'e woork in files 😢")
+print("emojis don't work in files 😢")
