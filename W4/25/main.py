@@ -33,5 +33,5 @@ max_t = data["temp"].max()
 # print(data[data.temp == max_t])
 
 monday = data[data.day == "monday"]
-t = int(monday.temp)
+t = int(monday.temp[0])
 print(t * 1.8 + 32)
