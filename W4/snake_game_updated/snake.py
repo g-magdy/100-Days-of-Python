@@ -30,7 +30,7 @@ class Snake:
             self.cells[i].goto(pos)
     
     def resetSnake(self):
-        #(But does not remove them from the screen do i'll)
+        # in order to clear the turtles i'll move them off screen
         for c in self.cells:
             c.goto(1000, 1000)
         

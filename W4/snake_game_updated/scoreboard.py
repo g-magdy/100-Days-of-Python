@@ -9,6 +9,7 @@ class Scoreboard(Turtle):
         self.setpos(0, 260)
         self.score = 0
         self.highScore = 0
+        # getting the stored highscore from the input file
         with open("highScore.txt") as file:
             self.highScore = int(file.read()) 
             # don't forget to convert from str to int
@@ -21,11 +22,13 @@ class Scoreboard(Turtle):
         self.score += 1
         
     def resetScore(self):
+        # instead of Game over, this gets called
+        # check whether or not to change the stored highscore in the file
         if (self.score > self.highScore):
             self.highScore = self.score
         with open("highScore.txt", mode="w") as file:
             file.write(str(self.highScore))
-            # don't forget to convert from int to stringd
+            # don't forget to convert from int to string
         self.score = 0
         self.showScore()
         
