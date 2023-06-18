@@ -24,21 +24,19 @@ class Writer(turtle.Turtle):
         self.speed(0)
         self.hideturtle()
         self.correct_answers = 0
-        self.taken = []
+        self.guessed = []
     def put_word(self, word, x, y):
         ''' string to be written & x, y coords'''
-        self.taken.append(s)
+        self.guessed.append(s)
         self.goto(x, y)
         self.write(word)
     def increase_score(self):
         self.correct_answers += 1
     def goodbye(self):
         # generate csv file of misses
-        missed = states_list
-        for state in missed:
-            if state in self.taken:
-                missed.remove(state)
-        df = pandas.DataFrame(missed)
+        # USING LIST COMPREHENSION
+        missed_states = [s for s in states_list if (s not in self.guessed)]
+        df = pandas.DataFrame(missed_states)
         df.to_csv("missed.csv")
         print("Game ended successfully")
         print("A csv file containing the missed states was generated")
@@ -50,17 +48,13 @@ while judge.correct_answers < STATES_NUMBER:
                                   prompt="Enter the name of a state"))
     s = s.title()
     if (s == "Exit"):
-        break
-        
-    if states_list.count(s) != 0:
-        if judge.taken.count(s) == 0:
-            print('bravo')
+        break  
+    elif s in states_list:
+        if s not in judge.guessed:
             mystate = states_dataframe[states_dataframe.state == s]
             xcoor = mystate.x.item() # .item() solves a lot of problems
             ycoor = mystate.y.item()
             judge.put_word(s, xcoor, ycoor)
             judge.increase_score()
-    else:
-        print("does not exist")
-
+    
 judge.goodbye()
