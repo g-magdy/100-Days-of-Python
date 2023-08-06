@@ -10,7 +10,7 @@ class Scoreboard(Turtle):
         self.score = 0
         self.highScore = 0
         # getting the stored highscore from the input file
-        with open("highScore.txt") as file:
+        with open("highScore.txt", mode="r") as file:
             self.highScore = int(file.read()) 
             # don't forget to convert from str to int
         
