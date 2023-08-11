@@ -1,14 +1,22 @@
 {
-    "AMEX": {
-        "email": "georgetwafik09@gmail.com",
-        "password": "%MyVN55)3D3*ns&%L7xA2"
+    "amazon": {
+        "email": "jerry@gmail.com",
+        "password": "mHT(3$oxS+CiI8#528"
     },
-    "Facebook": {
-        "email": "georgetwafik09@gmail.com",
-        "password": "3(2*K2ibI62p#$b6*H*"
+    "netflix": {
+        "email": "jerry@gmail.com",
+        "password": "o9+O+(VcGf65a"
     },
     "google": {
-        "email": "georgetwafik09@gmail.com",
-        "password": "Vre7q9H9NeX7$S#s)+z&"
+        "email": "jerry@gmail.com",
+        "password": "lDXs!xv!34v)P#2%&O1"
+    },
+    "faceboook": {
+        "email": "jerry@gmail.com",
+        "password": "%U6PF65W%*oY#zjzf7*$j"
+    },
+    "uber": {
+        "email": "jerry@gmail.com",
+        "password": "&87ea9&*7Cj4s#7k$IBZ"
     }
 }
