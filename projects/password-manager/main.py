@@ -1,4 +1,4 @@
-import tkinter, csv, random, pyperclip
+import tkinter, csv, random, pyperclip, json
 from tkinter import messagebox
 from string import digits, ascii_lowercase, ascii_uppercase
 #Potential features
@@ -31,23 +31,37 @@ def generate_pwd():
 def register():
     website = website_in.get()
     email = email_in.get()
-    pwd = pwd_in.get()
-    if "" in [website, email, pwd]:
+    password = pwd_in.get()
+    if "" in [website, email, password]:
         messagebox.showwarning(title="Empty fields warning",
                              message="Please fill out all fields")
         return
     
     confirmation = messagebox.askokcancel(title=f"{website}",
-                                   message=f"Email: {email}\nPassword: {pwd}\nSave this ?")
-    if confirmation:    
-        with open("data.csv", mode="a") as file:
-            writer = csv.writer(file)
-            writer.writerow([website, email, pwd])
+                                   message=f"Email: {email}\nPassword: {password}\nSave this ?")
+    if confirmation:
+        new_data = {
+            website: {
+                "email":email,
+                "password":password
+            }
+        }
+        try:
+            with open("data.json", mode="r") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("data.json", mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
+            data.update(new_data)
+            with open("data.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
+        finally:
             website_in.delete(0, tkinter.END)
             pwd_in.delete(0, tkinter.END)
-            pyperclip.copy(pwd)
+            pyperclip.copy(password)
             messagebox.showinfo(title="Done!", 
-                                message="Your data was saved in 'data.csv'\n"
+                                message="Your data was saved in data.json\n"
                                 "Your password was compied to the clipboard too!")
 
 # ---------------------------- UI SETUP ------------------------------- #
