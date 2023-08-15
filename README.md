@@ -14,3 +14,18 @@ https://www.udemy.com/course/100-days-of-code/
 In the folder of each week you will find: 
 - Small functional programs that I learn through
 - Some cool games ❤
+
+### The modules I've encountered (as I remember 😅):
+* cs50
+* csv
+* geocoder
+* json
+* os
+* pandas
+* prettytable
+* pyinstaller
+* pyperclip
+* random
+* termcolor
+* tkinter
+* turtle
