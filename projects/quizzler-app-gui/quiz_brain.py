@@ -11,20 +11,16 @@ class QuizBrain:
     def still_has_questions(self):
         return self.question_number < len(self.question_list)
 
-    def next_question(self):
+    def next_question(self) ->str:
         self.current_question = self.question_list[self.question_number]
         self.question_number += 1
         q_text = html.unescape(self.current_question.text)
-        user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ")
-        self.check_answer(user_answer)
+        return f"Q.{self.question_number}: {q_text} (True/False): "
 
-    def check_answer(self, user_answer):
-        correct_answer = self.current_question.answer
-        if user_answer.lower() == correct_answer.lower():
-            self.score += 1
-            termcolor.cprint("You got it right!", color="green")
-        else:
-            termcolor.cprint("That's wrong.", color="red")
-
-        termcolor.cprint(f"Your current score is: {self.score}/{self.question_number}", color="yellow")
-        print("\n")
+    def check_answer(self, user_answer : str) -> bool:
+        correct_answer = ""
+        if self.current_question:
+            correct_answer = self.current_question.answer
+        check = user_answer.lower() == correct_answer.lower()
+        self.score += check
+        return check
