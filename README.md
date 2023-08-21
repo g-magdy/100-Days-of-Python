@@ -18,6 +18,8 @@ In the folder of each week you will find:
 ### The modules I've encountered (as I remember 😅):
 * cs50
 * csv
+* datetime
+* dotenv
 * geocoder
 * json
 * os
