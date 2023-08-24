@@ -27,7 +27,7 @@ message = f"Weather report for {response['name']}: {description}\nTemp = {temp} 
 client = Client(ACC_SID, AUTH_TOKEN)
 message = client.messages.create(
     from_=SENDER,
-    to=RECEIVER,
+    to=RECEIVER, #type: ignore
     body=message
 )
 print(message.status)
