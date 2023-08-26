@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Color Changer</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s ease;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button id="button1">Change to Red</button>
+<button id="button2">Change to Green</button>
+<button id="button3">Change to Blue</button>
+
+<script>
+  const button1 = document.getElementById("button1");
+  const button2 = document.getElementById("button2");
+  const button3 = document.getElementById("button3");
+
+  button1.addEventListener("click", () => {
+    document.body.style.backgroundColor = "red";
+  });
+
+  button2.addEventListener("click", () => {
+    document.body.style.backgroundColor = "green";
+  });
+
+  button3.addEventListener("click", () => {
+    document.body.style.backgroundColor = "blue";
+  });
+</script>
+</body>
+</html>

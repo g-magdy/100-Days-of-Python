@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello there</h1>
+    <button id="red">Style me in Red</button>
+    <button id="green">Style me in Green</button>
+    <button id="blue">Style me in Blue</button>
+    <button id="black">Style me in Black</button>
+    <button id="white">Style me in White</button>
+    <script>
+        document.getElementById("red").addEventListener("click", () => {
+            document.body.style.backgroundColor = "red"
+        });
+        document.getElementById("green").addEventListener("click", () => {
+            document.body.style.backgroundColor = "green"
+        });
+        document.getElementById("blue").addEventListener("click", () => {
+            document.body.style.backgroundColor = "blue"
+        });
+        document.getElementById("black").addEventListener("click", () => {
+            document.body.style.backgroundColor = "black"
+        });
+        document.getElementById("white").addEventListener("click", () => {
+            document.body.style.backgroundColor = "white"
+        });
+    </script>
+</body>
+</html>
