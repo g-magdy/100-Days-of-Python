@@ -16,11 +16,26 @@ for t in titles:
         links.append(l)
         texts.append(t.get_text())
     
-
 scores = soup.select(selector="td.subtext span.subline .score")
 for score in scores:
     points.append(int(score.get_text().split()[0]))
 
-print(len(links))
-print(len(texts))
-print(len(points))
+articles = []
+for l, t, p in zip(links, texts, points):
+    articles.append({
+        "text": t,
+        "link": l,
+        "points":p
+    })
+
+# index_of_max = 0
+# for index, article in enumerate(articles):
+#     if article["points"] > articles[index_of_max]["points"]:
+#         index_of_max = index
+        
+# print(articles[index_of_max])
+
+print(articles[points.index(max(points))])
+
+# remember to check https://<page>/robots.txt 
+# to see what is allowed and what is not allowed to scrape
