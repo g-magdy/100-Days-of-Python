@@ -19,7 +19,7 @@ def main(config : dict):
     
     # print(sp.current_user()["id"]) #type: ignore
     tracks_uri = []
-
+    
 def get_auth_token(config : dict):
     response = requests.post(
         url="https://accounts.spotify.com/api/token",
