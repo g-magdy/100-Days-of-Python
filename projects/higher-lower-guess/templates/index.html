@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Guess</title>
+{% endblock title %}
+{% block main %}
+<h1>Guess a number between 0 and 9</h1>
+<img src="https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif">
+<form action="/" method="post">
+    <input autocomplete="off" autofocus required="True" id="guessed" name="guessed" type="number" min="0" max="9" placeholder="guess a number">
+    <button type="submit">Submit</button>
+</form>
+<form action="/change" method="get">
+    <button>Change magic number</button>
+</form>
+{% endblock main %}
