@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./static/library.ico">
+    <title>Edit Book</title>
+  </head>
+  <body>
+    <form action="/edit" method="POST">
+      <p>Title : {{book.title}}</p>
+      <p>Author : {{book.author}}</p>
+      <p>Old Rating: {{book.rating}}</p>
+      <input hidden="hidden" name="id" value="{{book.id}}">
+      <label>New Rating</label>
+      <input type="text" name="new_rating"/>
+      <button type="submit">Change Rating</button>
+    </form>
+  </body>
+</html>
