@@ -1,25 +1,25 @@
 from flask import Flask, render_template, redirect, url_for, request
+# from flask_wtf import FlaskForm
+# from flask_wtf.form import _Auto
+# from wtforms import StringField, EmailField, PasswordField, SubmitField
+# from wtforms.validators import DataRequired, Length, Email
+# import email_validator
+# from flask_bootstrap import Bootstrap5
+
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, FloatField
 from wtforms.validators import DataRequired
 import requests
 
-'''
-Red underlines? Install the required packages first: 
-Open the Terminal in PyCharm (bottom left). 
+class EditForm(FlaskForm):
+    rating = FloatField(label="Your rating out of 10 e.g. 7.5", validators=[DataRequired()])
+    review = StringField(label="Your Review", validators=[DataRequired()])
+    submit = SubmitField("Done")
 
-On Windows type:
-python -m pip install -r requirements.txt
-
-On MacOS type:
-pip3 install -r requirements.txt
-
-This will install the packages from requirements.txt for this project.
-'''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -53,6 +53,22 @@ def getAllMovies():
 @app.route("/")
 def home():
     return render_template("index.html", movies=getAllMovies())
+
+@app.route("/edit", methods=["GET", "POST"])
+def editRating():
+    form : FlaskForm = EditForm()
+    target = request.args.get("id")
+    req_movie = db.get_or_404(Movie, target)
+    if form.validate_on_submit():
+        r = float(form.rating.data)
+        req_movie.rating = r if r <=10 else 10
+        req_movie.review = form.review.data
+        db.session.commit()
+        return redirect(url_for("home"))
+        
+    return render_template("edit.html", form = EditForm(), movie=req_movie)
+    
+        
 
 
 if __name__ == '__main__':

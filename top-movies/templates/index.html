@@ -15,7 +15,7 @@
       </div>
       <div class="back">
         <div>
-      <div class="title">{{movie.title}}<span class="release_date">{{movie.year}}</span></div>
+      <div class="title">{{movie.title}} <span class="release_date">({{movie.year}})</span></div>
           <div class="rating">
               <label>{{movie.rating}}</label>
             <i class="fas fa-star star"></i>
@@ -25,7 +25,7 @@
               {{movie.description}}
           </p>
 
-          <a href="#" class="button">Update</a>
+          <a href="{{url_for('editRating', id=movie.id)}}" class="button">Update</a>
           <a href="#" class="button delete-button">Delete</a>
 
         </div>
