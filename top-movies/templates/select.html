@@ -7,12 +7,15 @@
     <h1 class="heading">Select Movie</h1>
 
     {% for movie in movies %}
-      
+    <div class="movie">
       <p>
-        <a href="{{url_for('getMovieDetails', id=movie.id)}}"> {{movie.title}} - {{movie.release_date}}</a>
-      </p>
-    
-    {% endfor %}
+        <a href="{{ url_for('getMovieDetails', id=movie.id) }}">
+              <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{ movie.title }} image" class="movie-image" width=200>
+                {{ movie.title }} - {{ movie.release_date }}
+            </a>
+        </p>
+    </div>
+{% endfor %}
 
 
 </div>

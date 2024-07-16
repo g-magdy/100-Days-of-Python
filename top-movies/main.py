@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -22,6 +22,8 @@ class AddForm(FlaskForm):
     submit = SubmitField("Search")
 
 MOVIES_API_URL = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1"
+
+MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 headers = {
     "accept": "application/json",
@@ -58,12 +60,17 @@ class Movie(db.Model):
     review: Mapped[str] = mapped_column(String, nullable=False)
     img_url: Mapped[str] = mapped_column(String, nullable=False)
 
-def getAllMovies():
-    return db.session.execute(db.select(Movie)).scalars().all()
-
 @app.route("/")
 def home():
-    return render_template("index.html", movies=getAllMovies())
+    allmovies = db.session.execute(db.select(Movie).order_by(Movie.rating)).scalars().all()
+    
+    for i, movie in enumerate(allmovies):
+        movie.ranking = len(allmovies) - i
+    
+    db.session.commit()
+        
+    
+    return render_template("index.html", movies=allmovies)
 
 @app.route("/edit", methods=["GET", "POST"])
 def editRating():
@@ -98,26 +105,36 @@ def addMovie():
         }
         moviesResponse = requests.get(url=MOVIES_API_URL, headers=headers, params=params)
         moviesResponse = moviesResponse.json()
-        # session["searchData"] = moviesResponse
         
-        cache.set('searchData', moviesResponse["results"], timeout=5*60)  # Store in cache for 5 minutes
+        cache.set('searchData', moviesResponse["results"], timeout=15*60)  # Store in cache for 5 minutes
 
-        # print(session.get("searchData", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
         return redirect(url_for('pick'))
     
     return render_template("add.html", form=addForm)
 
 @app.route("/search")
 def pick():
-    # print(session.get("searchData", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
-    # searchData = session.get('searchData', [])  # Retrieve the data from the session
     searchData = cache.get('searchData')  # Retrieve the data from the cache
     return render_template("select.html", movies=searchData)
 
 @app.route("/get-movie")
 def getMovieDetails():
-    params = request.args.get("id")
-    return f"you requested moive id = {params}"
+    movie_id = request.args.get("id")
+    searchURL = f"https://api.themoviedb.org/3/movie/{movie_id}"
+    response = requests.get(url=searchURL, headers=headers)
+    response = response.json()
+    new_movie = Movie()
+    new_movie.id = movie_id
+    new_movie.title = response["original_title"]
+    new_movie.img_url = f"https://image.tmdb.org/t/p/w500/{response['poster_path']}"
+    new_movie.year = response['release_date'][0:4]
+    new_movie.description = response['overview']
+    new_movie.ranking = 0
+    new_movie.rating = 0
+    new_movie.review = "not yet reviewed"
+    db.session.add(new_movie)
+    db.session.commit()
+    return redirect(url_for('editRating', id=movie_id))
 
 if __name__ == '__main__':
     app.run(debug=True)
