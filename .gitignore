@@ -72,3 +72,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+
+# I really hate this
+*.mo
+*.po
+*.pyc
