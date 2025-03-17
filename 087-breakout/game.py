@@ -1,6 +1,9 @@
 import pygame
 import config
 
+from paddle import Paddle
+from ball import Ball
+
 class Game:
     
     def __init__(self):
@@ -10,6 +13,10 @@ class Game:
         pygame.display.set_caption("Breakout")
         self.clock = pygame.time.Clock()
         self.running = True
+        
+        self.paddle = Paddle()
+        self.ball = Ball()
+        self.bricks = None
     
     
     def run(self):
@@ -18,6 +25,7 @@ class Game:
             self.update()
             self.draw()
             self.clock.tick(config.FPS)
+
     
     
     def handle_events(self):
@@ -27,8 +35,20 @@ class Game:
     
     
     def update(self):
-        pass
+        if self.running is True:
+            print("Start Updade")
+            self.paddle.update()
+            self.ball.update(self.paddle, self.bricks)
+            print("Finish")
     
     
     def draw(self):
-        pass
+        #! Important Line
+        self.screen.fill(config.BACKGROUND_COLOR)
+        
+        
+        self.paddle.draw(self.screen)
+        self.ball.draw(self.screen)
+        
+        #! Important Line
+        pygame.display.flip()
