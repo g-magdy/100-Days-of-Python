@@ -76,17 +76,26 @@ class Ball:
     
     def detect_collision_with_bricks(self, bricks):
         for brick in bricks.bricks:
-            if self.x + self.radius > brick.rect.left and self.x - self.radius < brick.rect.right:
-                if self.y + self.radius > brick.rect.top and self.y - self.radius < brick.rect.bottom:
-                    # Determine which side the ball hit
-                    if abs(self.x - brick.rect.left) < self.radius or abs(self.x - brick.rect.right) < self.radius:
-                        self.dx *= -1  # Bounce horizontally
+            if self.x + self.radius > brick.rect.x and self.x - self.radius < brick.rect.x + brick.rect.width:
+                if self.y + self.radius > brick.rect.y and self.y - self.radius < brick.rect.y + brick.rect.height:
+                    bricks.bricks.remove(brick)  # Remove brick on collision
+                    
+                    # Find penetration depth
+                    overlap_left = abs(self.x + self.radius - brick.rect.x)
+                    overlap_right = abs(self.x - self.radius - (brick.rect.x + brick.rect.width))
+                    overlap_top = abs(self.y + self.radius - brick.rect.y)
+                    overlap_bottom = abs(self.y - self.radius - (brick.rect.y + brick.rect.height))
+                    
+                    # Determine collision side
+                    min_overlap = min(overlap_left, overlap_right, overlap_top, overlap_bottom)
+                    
+                    if min_overlap == overlap_top or min_overlap == overlap_bottom:
+                        self.dy *= -1  # Vertical bounce
                     else:
-                        self.dy *= -1  # Bounce vertically
+                        self.dx *= -1  # Horizontal bounce
+                    
+                    break  # Prevent multiple collisions at once
 
-                    # Remove the brick
-                    bricks.bricks.remove(brick)
-                    return  # Avoid multiple removals per frame
 
 
     

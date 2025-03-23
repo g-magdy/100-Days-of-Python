@@ -13,12 +13,24 @@ class Game:
         self.screen = pygame.display.set_mode((config.WINDOW_WIDTH, config.WINDOW_HEIGHT))
         pygame.display.set_caption("Breakout")
         self.clock = pygame.time.Clock()
+        self.start_time = pygame.time.get_ticks()
         self.running = True
         self.lives = config.INITIAL_LIVES
         self.paddle = Paddle()
         self.ball = Ball()
         self.bricks = Bricks()
     
+    def draw_hub(self):
+        font = pygame.font.Font(None, 36)  
+
+        # Display Lives
+        lives_text = font.render(f'Lives: {self.lives}', True, (255, 255, 255))
+        self.screen.blit(lives_text, (20, 10))  # Position near the top-left
+
+        # Display Timer
+        elapsed_time = (pygame.time.get_ticks() - self.start_time) // 1000  # Convert ms to seconds
+        timer_text = font.render(f'Time: {elapsed_time}s', True, (255, 255, 255))
+        self.screen.blit(timer_text, (config.WINDOW_WIDTH - 120, 10))  # Position near top-right
     
     def run(self):
         while self.running:
@@ -61,10 +73,39 @@ class Game:
             self.lives -= 1
             self.ball.reset_ball()
             self.paddle.reset_paddle()
-            self.display_counter(3)
+            if self.lives == 0:
+                self.game_over_screen()
+            else:
+                self.display_counter(3)
             
-        if self.lives == 0:
-            self.running = False
+    
+    def game_over_screen(self):
+        font = pygame.font.Font(None, 74)
+        text = font.render("Game Over\nPress Enter to Play again\nPress Escape To Exit", True, (255, 255, 255))
+        text_rect = text.get_rect(center=(config.WINDOW_WIDTH / 2, config.WINDOW_HEIGHT / 2))
+
+        self.screen.fill((0, 0, 0))  # Clear screen
+        self.screen.blit(text, text_rect)
+
+        pygame.display.flip()  # Update display
+
+        while True:  # Wait for valid key press
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    return
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:  # Restart game
+                        self.lives = config.INITIAL_LIVES
+                        self.start_time = pygame.time.get_ticks()
+                        self.ball.reset_ball()
+                        self.paddle.reset_paddle()
+                        self.display_counter(3)
+                        return  # Exit game over screen
+                    elif event.key == pygame.K_ESCAPE:  # Quit game
+                        self.running = False
+                        return
+
     
     def handle_events(self):
         for event in pygame.event.get():
@@ -83,7 +124,7 @@ class Game:
         #! Important Line
         self.screen.fill(config.BACKGROUND_COLOR)
         
-        
+        self.draw_hub()
         self.paddle.draw(self.screen)
         self.ball.draw(self.screen)
         self.bricks.draw(self.screen)
