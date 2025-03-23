@@ -8,9 +8,7 @@ def main():
     pygame.init()
     game = Game()
     game.run()
-    print("Reached here")
-    # pygame.quit()
-    print("Reached there")
+    # pygame.quit() # this line hangs forever I don't know why 
     os._exit(0)
     
 
