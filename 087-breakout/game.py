@@ -100,6 +100,7 @@ class Game:
                         self.start_time = pygame.time.get_ticks()
                         self.ball.reset_ball()
                         self.paddle.reset_paddle()
+                        self.bricks.reset_bricks()
                         self.display_counter(3)
                         return  # Exit game over screen
                     elif event.key == pygame.K_ESCAPE:  # Quit game

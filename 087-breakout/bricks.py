@@ -17,6 +17,9 @@ class Brick:
 
 class Bricks:
     def __init__(self):
+        self.reset_bricks()
+    
+    def reset_bricks(self):
         self.bricks = []
         y = config.WINDOW_HEIGHT * 0.1  # 10% of the window height
         for i in range(config.BRICK_ROWS):
@@ -28,7 +31,6 @@ class Bricks:
                 x = x + config.BRICK_WIDTH + config.BRICKS_MARGIN
             
             y = y + config.BRICK_HEIGHT + config.BRICKS_MARGIN
-        
         
         
     def draw(self, screen):
