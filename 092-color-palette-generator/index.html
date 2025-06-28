@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator</title>
+    <link rel="shortcut icon" href="./icons8-color-palette-94.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>Image Color Palette Extractor</h1>
+        <h2>Upload your image here and let me help you out</h2>
+        <input id="input-image" type="file" accept="image/*">
+        
+        <div id="image-display-box" filled="false">
+            <img id="image-container">
+        </div>
+        
+        <canvas id="drawing-canvas"></canvas>
+
+        <div id="palette-container">
+            <h3>Generated color palette</h3>
+            <div class="color-swatches-grid">
+
+            </div>
+        </div>
+    </div>
+    <script src="./script.js" defer></script>
+</body>
+</html>
